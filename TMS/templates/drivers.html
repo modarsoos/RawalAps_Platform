@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+  <h5>
+    Ansætter
+    <small class="text-body-secondary">Side</small>
+  </h5>
+  
+    <nav>
+            <button class="mb-1 btn btn-sm btn-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                <a class="nav-link" href="{% url 'add_driver' %}">føje Chauffør</a>
+            </button>
+    </nav>
+    <div class=" ">
+        <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <tr class="">
+                <th><small>ID</small></th>
+                <th><small>Name</small></th>
+                <th><small>Mobile</small></th>
+                <th><small>Email</small></th>
+                <th><small>CPR. No.</small></th>
+                <th><small>Address</small></th>
+                <th><small>Bank Reg.</small></th>
+                <th><small>Bank Account</small></th>
+                <th><small>Position</small></th>
+                <th><small>Fuel Card</small></th>
+                <th><small>Start Date</small></th>
+                <th><small>End Date</small></th>
+                <th><small>Active</small></th>
+                
+                </tr>
+            </thead>
+            <tbody>   
+                {% if drivers %}
+                    {% for driver in drivers %}
+                        <tr>
+                            <td><small><a href="{% url 'driver' driver.id %}">{{ driver.id }}</a></small></td>
+                            <td><small><a href="{% url 'driver' driver.id %}">{{ driver.fname }} {{ driver.lname }}</a></small></td>
+                            <td><small>{{ driver.mobile }}</small></td>
+                            <td><small>{{ driver.email }}</small></td>
+                            <td><small>{{ driver.cpr }}</small></td>
+                            <td><small>{{ driver.address }}</small></td>
+                            <td><small>{{ driver.bank_reg }}</small></td>
+                            <td><small>{{ driver.bank_account }}</small></td>
+                            <td><small>{{ driver.position }}</small></td>
+                            <td><small>{{ driver.fcard }}</small></td>
+                            <td><small>{{ driver.start }}</small></td>
+                            <td><small>{{ driver.end }}</small></td>
+                            <td><small>{{ driver.is_active }}</small></td>
+                            
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+ 
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+  <h5>
+    Vognløbetter
+    <small class="text-body-secondary">Side</small>
+  </h5>
+  <nav>
+    <button class="mb-1 btn btn-sm btn-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+        <a class="nav-link" href="{% url 'add_vl' %}">føje VL</a>
+    </button>
+  </nav>
+  <div class=" ">
+    <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+            <th ><small>ID</small></th>
+            <th ><small>Vongløbet No.</small></th>
+            <th ><small>VL Sys. ID</small></th>
+            <th ><small>VL Type</small></th>
+            <th ><small>VL Address</small></th>
+            <th ><small>Active</small></th>
+            <th ><small>Created at</small></th>
+
+            </tr>
+        </thead>
+        <tbody>   
+            {% if vls %}
+                {% for vl in vls %}
+                    <tr>
+                        <td><small><a href="{% url 'vl' vl.id %}">{{ vl.id }}</a></small></td>
+                        <td><small>{{ vl.vlnr }}</small></td>
+                        <td><small>{{ vl.vlid }}</small></td>
+                        <td><small>{{ vl.vltype }}</small></td>
+                        <td><small>{{ vl.vladdress }}</small></td>
+                        <td><small>{{ vl.is_active }}</small></td>
+                        <td><small>{{ vl.created_at }}</small></td>
+                        
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+  </div>
+ 
+  {% endif %}
+{% endblock %}

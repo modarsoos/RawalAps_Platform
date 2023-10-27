@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <h5>
+        Ture
+        <small class="text-body-secondary">Side</small>
+    </h5>
+    
+    <nav>
+            <button class=" mb-1 btn btn-sm btn-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                <a class="nav-link" href="{% url 'add_trip' %}">føje Tur</a>
+            </button>
+            <button class=" mb-1 btn btn-sm btn-secondary" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                <a class="nav-link" href="{% url 'trips_csv' %}">CSV</a>
+            </button>
+    </nav>
+    <div class=" table-responsive-sm ">
+        <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <tr class="flex-row responsive">
+                    <th ><small></small></th>
+                    <th ><small>ID</small></th>
+                    <th ><small>Driver</small></th>
+                    <th ><small>VL</small></th>
+                    <th ><small>Car</small></th>
+                    <th ><small>Income</small></th>
+                    <th ><small>Cash</small></th>
+                    <th ><small>Total</small></th>
+                    <th ><small>P. Type</small></th>
+                    <th ><small>Per%</small></th>
+                    <th ><small>%*Total</small></th>
+                    <th ><small>From</small></th>
+                    <th ><small>From</small></th>
+                    <th ><small>Till</small></th>
+                    <th ><small>Till</small></th>
+                    <th ><small>W. Time</small></th>
+                    <th ><small>Pause</small></th>
+                    <th ><small>P. Time</small></th>
+                    <th ><small>Expenses</small></th>
+                    <th ><small>Exp. Reason</small></th>
+                    <th ><small>Note</small></th>
+                </tr>
+            </thead>
+            <tbody>   
+                {% if trips %}
+                    {% for trip in trips %}
+                        <tr class="flex-row responsive flex-grow-1">
+                            <th >
+                            <a href="{% url 'update_trip' trip.id %}"> ✎ </a>
+                            </th>
+                            <td><a href="{% url 'trip' trip.id %}">{{ trip.id }}</a></td>
+                            <td><small> {{ trip.driver }} </small></td> 
+                            <td><small> {{ trip.vl }} </small></td>
+                            <td><small> {{ trip.car }} </small></td>
+                            <td><small> {{ trip.income }} </small></td>
+                            <td><small> {{ trip.cash }} </small></td>
+                            <td><small> {{ trip.total }} </small></td>
+                            <td><small> {{ trip.p_type }} </small></td>
+                            <td><small> {{ trip.percent }} </small></td>
+                            <td><small> {{ trip.per_total }} </small></td>
+                            <td><small> {{ trip.fromd }} </small></td>
+                            <td><small> {{ trip.fromt }} </small></td>
+                            <td><small> {{ trip.tilld }} </small></td>
+                            <td><small> {{ trip.tillt }} </small></td>
+                            <td><small> {{ trip.work_time }} </small></td>
+                            <td><small> {{ trip.pause }} </small></td>
+                            <td><small> {{ trip.p_time }} </small></td>
+                            <td><small> {{ trip.expenses }} </small></td>
+                            <td><small> {{ trip.exp_reason }} </small></td>
+                            <td><small> {{ trip.note }} </small></td> 
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+ 
+  {% endif %}
+{% endblock %}

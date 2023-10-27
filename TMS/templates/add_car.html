@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="col">
+<h3>Add Car</h3>
+<br/>
+
+<form method="POST" action="{% url 'add_car' %}">
+	{% csrf_token %}
+
+  <div class="table-responsive">
+    <table class="table table-sm table-striped ">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Make</th>
+          <td > {{ form.make }}</td>
+          <th scope="row">Last Model</th>
+          <td>{{ form.model }}</td>
+          <th scope="row">Year</th>
+          <td>{{ form.year }}</td>
+          <th scope="row">Short</th>
+          <td>{{ form.short }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Plate </th>
+          <td>{{ form.plate }}</td>
+          <th scope="row">Size </th>
+          <td>{{ form.size }}</td>
+          <th scope="row">Mobile </th>
+          <td>{{ form.mobile }}</td>
+          <th scope="row">Reg No.</th>
+          <td>{{ form.reg_nr }}</td>
+        </tr>
+        <tr>
+          <th scope="row">First Reg. </th>
+          <td>{{ form.reg_first }}</td>
+          <th scope="row">Reg. Due </th>
+          <td>{{ form.reg_due }}</td>
+          <th scope="row">Stairs Due </th>
+          <td>{{ form.stairs_due }}</td>
+          <th scope="row">Lift Due </th>
+          <td>{{ form.lift_due }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Tires Due</th>
+          <td>{{ form.tires_due }}</td>
+          <th scope="row">Fuel Card </th>
+          <td>{{ form.fcard}}</td>
+        </tr>
+      </tbody>
+    </table>
+  <div>
+
+<br/>
+  <button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Add Car</button>
+   <a href="{% url 'home' %}" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+
+</form>
+
+</div>
+{% endif %}
+{% endblock %}

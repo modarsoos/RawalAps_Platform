@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+  <div class=''>
+    <div >
+        <div class="col-3 text-center mb-1 p-1" style="background-color: #fff487 ">
+              <strong> 
+                  {{ driver_record.fname }} {{ driver_record.lname }}
+              </strong>
+        </div>
+        <div>
+          <a href="{% url 'drivers' %}" class="mb-1 btn btn-dark" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+          <a href="{% url 'delete_driver' driver_record.id %}" class="mb-1 btn btn-danger" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Slette</a>
+          <a href="{% url 'update_driver' driver_record.id %}" class="mb-1 btn btn-secondary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Redigere</a>
+        </div>
+
+        <div class="table-responsive">
+        <table class=" table-sm"  style="background-color: #fff8b0" >
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Fornavn:</th>
+              <td> {{ driver_record.fname }}</td>
+              <th scope="row">Efternavn:</th>
+              <td>{{ driver_record.lname }}</td>
+              <th scope="row">Kort Navn:</th>
+              <td >{{ driver_record.short }}</td>
+            </tr>
+            <tr>
+
+              <th scope="row">Mobile:</th>
+              <td>{{ driver_record.mobile }}</td>
+              <th scope="row">Email:</th>
+              <td>{{ driver_record.email }}</td>
+              <th scope="row">CPR. No.:</th>
+              <td>{{ driver_record.cpr }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Adresse: </th>
+              <td>{{ driver_record.address }}</td>
+              <th scope="row">Bank Reg.</th>
+              <td>{{ driver_record.bank_reg  }}</td>
+              <th scope="row">Bankkonto:</th>
+              <td >{{ driver_record.bank_account }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Position:</th>
+              <td >{{ driver_record.position }}</td>
+              <th scope="row">Benzinkort:</th>
+              <td >{{ driver_record.fcard }}</td>
+              <th scope="row">Start Dato:</th>
+              <td >{{ driver_record.start }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Slutdato:</th>
+              <td  >{{ driver_record.end }}</td>
+              <th scope="row">Activ:</th>
+              <td  >{{ driver_record.is_active }}</td>
+              <th scope="row" ></th>
+              <td  ></td>
+            </tr>
+          </tbody>
+        </table>
+      <div>
+    </div>
+  </div>
+
+      <a href="{% url 'dtrips_csv' driver_record.id %}" class="mb-1 mt-1 btn btn-secondary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">CSV</a>
+
+<!-- Driver Trips-->
+
+<div class=" table-responsive-sm ">
+            <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr class="flex-row responsive">
+                        <th ><small></small></th>
+                        <th ><small>ID</small></th>
+                        <th ><small>Driver</small></th>
+                        <th ><small>VL</small></th>
+                        <th ><small>Car</small></th>
+                        <th ><small>Income</small></th>
+                        <th ><small>Cash</small></th>
+                        <th ><small>Total</small></th>
+                        <th ><small>P. Type</small></th>
+                        <th ><small>Per%</small></th>
+                        <th ><small>%*Total</small></th>
+                        <th ><small>From</small></th>
+                        <th ><small>From</small></th>
+                        <th ><small>Till</small></th>
+                        <th ><small>Till</small></th>
+                        <th ><small>W. Time</small></th>
+                        <th ><small>Pause</small></th>
+                        <th ><small>P. Time</small></th>
+                        <th ><small>Expenses</small></th>
+                        <th ><small>Exp. Reason</small></th>
+                        <th ><small>Note</small></th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    {% if trips %}
+                        {% for trip in trips %}
+                            <tr class="flex-row responsive flex-grow-1">
+                                <th >
+                                <a href="{% url 'update_trip' trip.id %}"> ✎ </a>
+                                </th>
+                                <td><a href="{% url 'trip' trip.id %}">{{ trip.id }}</a></td>
+                                <td><small> {{ trip.driver }} </small></td> 
+                                <td><small> {{ trip.vl }} </small></td>
+                                <td><small> {{ trip.car }} </small></td>
+                                <td><small> {{ trip.income }} </small></td>
+                                <td><small> {{ trip.cash }} </small></td>
+                                <td><small> {{ trip.total }} </small></td>
+                                <td><small> {{ trip.p_type }} </small></td>
+                                <td><small> {{ trip.percent }} </small></td>
+                                <td><small> {{ trip.per_total }} </small></td>
+                                <td><small> {{ trip.fromd }} </small></td>
+                                <td><small> {{ trip.fromt }} </small></td>
+                                <td><small> {{ trip.tillt }} </small></td>
+                                <td><small> {{ trip.tilld }} </small></td>
+                                <td><small> {{ trip.work_time }} </small></td>
+                                <td><small> {{ trip.pause }} </small></td>
+                                <td><small> {{ trip.p_time }} </small></td>
+                                <td><small> {{ trip.expenses }} </small></td>
+                                <td><small> {{ trip.exp_reason }} </small></td>
+                                <td><small> {{ trip.note }} </small></td> 
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+</div>
+      
+
+  {% endif %}
+{% endblock %}

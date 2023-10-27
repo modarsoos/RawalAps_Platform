@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="col">
+<h3>Add VL</h3>
+<br/>
+
+<form method="POST" action="{% url 'add_vl' %}">
+	{% csrf_token %}
+
+  <div class="table-responsive">
+    <table class="table table-sm table-striped ">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">VL No.</th>
+          <td > {{ form.vlnr }}</td>
+          <th scope="row">VL Type</th>
+          <td>{{ form.vltype }}</td>
+          <th scope="row">VL Sys ID.</th>
+          <td>{{ form.vlid }}</td>
+          <th scope="row">VL Address</th>
+          <td>{{ form.vladdress }}</td>
+        </tr> 
+          <th scope="row">Active </th>
+          <td>{{ form.is_active }}</td>       
+      </tbody>
+    </table>
+  <div>
+
+<br/>
+  <button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Add VL</button>
+   <a href="{% url 'home' %}" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+
+</form>
+
+</div>
+{% endif %}
+
+{% endblock %}

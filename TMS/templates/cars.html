@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <h5>
+        Biler
+        <small class="text-body-secondary">Side</small>
+    </h5>
+  <nav>
+    <button class="mb-1 btn btn-sm btn-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+        <a class="nav-link" href="{% url 'add_car' %}">føje Bil</a>
+    </button>
+  </nav>
+  <div class=" ">
+    <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+            <th ><small>ID</small></th>
+            <th ><small>Make & Model</small></th>
+            <th ><small>Year</small></th>
+            <th ><small>Short</small></th>
+            <th ><small>Plate No.</small></th>
+            <th ><small>Size</small></th>
+            <th ><small>Mobile</small></th>
+            <th ><small>Reg. No.</small></th>
+            <th ><small>1st Reg.</small></th>
+            <th ><small>Renewal Due</small></th>
+            <th ><small>Stairs Due</small></th>
+            <th ><small>Lift Due</small></th>
+            <th ><small>Tires Due</small></th>
+            <th ><small>Fuel Card</small></th>
+            <th ><small>Created at</small></th>
+            </tr>
+        </thead>
+        <tbody>   
+            {% if cars %}
+                {% for car in cars %}
+                    <tr>
+                        <td><small><a href="{% url 'car' car.id %}">{{ car.id }}</a></small></td>
+                        <td><small>{{ car.make }} {{ car.model }}</small></td>
+                        <td><small>{{ car.year }}</small></td>
+                        <td><small>{{ car.short }}</small></td>
+                        <td><small>{{ car.plate }}</small></td>
+                        <td><small>{{ car.size }}</small></td>
+                        <td><small>{{ car.mobile }}</small></td>
+                        <td><small>{{ car.reg_nr }}</small></td>
+                        <td><small>{{ car.reg_first }}</small></td>
+                        <td><small>{{ car.reg_due }}</small></td>
+                        <td><small>{{ car.stairs_due }}</small></td>
+                        <td><small>{{ car.lift_due }}</small></td>
+                        <td><small>{{ car.tires_due }}</small></td>
+                        <td><small>{{ car.fcard_lastdigits }}</small></td>
+                        <td><small>{{ car.created_at }}</small></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+  </div>
+ 
+  {% endif %}
+{% endblock %}

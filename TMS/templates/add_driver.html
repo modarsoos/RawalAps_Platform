@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="col">
+<h3>Add Driver</h3>
+<br/>
+
+<form method="POST" action="{% url 'add_driver' %}">
+	{% csrf_token %}
+  <div class="table-responsive">
+  <table class="table table-sm table-striped ">
+    <thead>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">First Name</th>
+        <td > {{ form.fname }}</td>
+        <th scope="row">Last Name</th>
+        <td>{{ form.lname }}</td>
+        <th scope="row">Short Name</th>
+        <td>{{ form.short }}</td>
+      </tr>
+      <tr>
+
+        <th scope="row">Mobile</th>
+        <td>{{ form.mobile }}</td>
+        <th scope="row">Email </th>
+        <td>{{ form.email }}</td>
+        <th scope="row">CPR. No. </th>
+        <td>{{ form.cpr }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Address </th>
+        <td>{{ form.address }}</td>
+        <th scope="row">Bank Reg.</th>
+        <td>{{ form.bank_reg  }}</td>
+        <th scope="row">Bank Account </th>
+        <td>{{ form.bank_account }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Position </th>
+        <td>{{ form.position }}</td>
+        <th scope="row">Fuel Card </th>
+        <td>{{ form.fcard }}</td>
+        <th scope="row">Start Date</th>
+        <td>{{ form.start }}</td>
+      </tr>
+      <tr>
+        <th scope="row">End Date </th>
+        <td>{{ form.end }}</td>
+        <th scope="row">Active </th>
+        <td>{{ form.is_active }}</td>
+      </tr>
+    </tbody>
+  </table>
+<div>
+<br/>
+  <button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Add Driver</button>
+   <a href="{% url 'home' %}" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+
+</form>
+
+</div>
+{% endif %}
+{% endblock %}

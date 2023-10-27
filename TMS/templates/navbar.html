@@ -1,0 +1,86 @@
+    <div class="row navbar navbar-expand-lg navbar-dark bg-dark responsive">
+        <div class="col">
+          <a class="navbar-brand  ms-2 me-1" href="{% url 'home' %}">Rawal Aps</a>
+          <a class="btn btn-sm btn-outline-warning mb-1 "style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .1rem; --bs-btn-font-size: .72rem;">Trips Management System</a>
+        </div>
+    
+      <div class="col">
+        <div class= "collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+            
+            {% if user.is_authenticated %}
+            <li class="nav-item ms-2 me-1">
+                <a class="nav-link "  href="{% url 'logout' %}">Logout</a>
+            </li>
+    
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            <li class="nav-item ms-2 me-1">
+              <a class="nav-link" href="{% url 'home' %}">Login</a>
+            </li>        
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  {% if user.is_authenticated %}
+  <nav class="row navbar navbar-expand-lg  responsive shadow " style="background-color: #a5b4c2 ">
+
+      <div class=" container-fluid">
+        <div class="container-fluid justify-content-start">
+          
+            <button class="btn btn-sm btn-primary" type="button">
+              <a class="nav-link " href="{% url 'home' %}">Home</a>
+            </button>
+            
+            &nbsp;
+            &nbsp;
+
+            <button class="btn btn-sm btn-secondary" type="button">
+              <a class="nav-link" href="{% url 'trips' %}">Ture</a>
+            </button>
+            <button class="btn btn-sm btn-success" type="button">
+              <a class="nav-link" href="{% url 'add_trip' %}">føje Tur</a>
+            </button>
+
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+
+            <button class="btn btn-sm btn-outline-light" type="button">
+              <a class="nav-link" href="{% url 'drivers' %}">Chauffører</a>
+            </button>
+      
+            <button class="btn btn-sm btn-outline-light" type="button">
+              <a class="nav-link" href="{% url 'cars' %}">Biler</a>
+            </button>
+      
+            <button class="btn btn-sm btn-outline-light " type="button">
+              <a class="nav-link" href="{% url 'vls' %}">Vls</a>
+            </button>
+
+            <button class="btn btn-sm btn btn-outline-light" type="button">
+              <a class="nav-link" href="{% url 'fcards' %}">Benzinkort</a>
+            </button>
+
+            &nbsp;
+            &nbsp;
+            <button class="btn btn-sm btn btn-outline-light" type="button">
+              <a class="nav-link" >Calendar</a>
+            </button>
+
+            &nbsp;
+            &nbsp;
+
+
+        </div>
+      </div>
+
+  </nav>
+   {% endif %}
+
+ 

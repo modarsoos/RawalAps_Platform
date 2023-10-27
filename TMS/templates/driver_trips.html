@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <!-- <h5>
+        Rejser
+        <small class="text-body-secondary">Side</small>
+    </h5>
+    
+    <nav>
+            <button class=" mb-1 btn btn-sm btn-outline-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                <a class="nav-link" href="{% url 'add_trip' %}">Add Trip</a>
+            </button>
+    </nav>
+    <div class=" table-responsive-sm ">
+        <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <tr class="flex-row responsive">
+                    <th ><small></small></th>
+                    <th ><small>ID</small></th>
+                    <th ><small>Driver</small></th>
+                    <th ><small>VL</small></th>
+                    <th ><small>Car</small></th>
+                    <th ><small>Income</small></th>
+                    <th ><small>Cash</small></th>
+                    <th ><small>Total</small></th>
+                    <th ><small>P. Type</small></th>
+                    <th ><small>Per%</small></th>
+                    <th ><small>%*Total</small></th>
+                    <th ><small>From</small></th>
+                    <th ><small>Till</small></th>
+                    <th ><small>W. Time</small></th>
+                    <th ><small>Pause</small></th>
+                    <th ><small>P. Time</small></th>
+                    <th ><small>Expenses</small></th>
+                    <th ><small>Exp. Reason</small></th>
+                    <th ><small>Note</small></th>
+                </tr>
+            </thead>
+            <tbody>   
+                {% if driver_trips %}
+                    {% for driver_trip in driver_trips %}
+                        <tr class="flex-row responsive flex-grow-1">
+                            <th >
+                            <a href="{% url 'update_trip' trip.id %}"> ✎ </a>
+                            </th>
+                            <td><a href="{% url 'driver_trip' driver_trip.id %}">{{ driver_trip.id }}</a></td>
+                            <td><small> {{ driver_trip.driver }} </small></td> 
+                            <td><small> {{ driver_trip.vl }} </small></td>
+                            <td><small> {{ driver_trip.car }} </small></td>
+
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+ 
+  {% endif %}
+{% endblock %}

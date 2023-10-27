@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+ 
+  <h5>
+    Benzin kort
+    <small class="text-body-secondary">Side</small>
+  </h5>
+
+  <nav>
+    <button class="mb-1 btn btn-sm btn-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+        <a class="nav-link" href="{% url 'add_fcard' %}">føje Benzinkort</a>
+    </button>
+  </nav> 
+   <div class=" ">
+    <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+            <th ><small>ID</small></th>
+            <th ><small>F. Card No.</small></th>
+            <th ><small>F. Card Last digits</small></th>
+            <th ><small>F. Card Type</small></th>
+            <th ><small>F. Card Expiry</small></th>
+            <th ><small>Active</small></th>
+            <th ><small>Created at</small></th>
+            </tr>
+        </thead>
+        <tbody>   
+            {% if fcards %}
+                {% for fcard in fcards %}
+                    <tr>
+                        <td><small><a href="{% url 'fcard' fcard.id %}">{{ fcard.id }}</a></small></td>
+                        <td><small><a href="{% url 'fcard' fcard.id %}">{{ fcard.fcnr }}</a></small></td>
+                        <td><small><a href="{% url 'fcard' fcard.id %}">{{ fcard.lastdigits }}</a></small></td>
+                        <td><small>{{ fcard.fctype }}</small></td>
+                        <td><small>{{ fcard.exp_date }}</small></td>
+                        <td><small>{{ fcard.is_active }}</small></td>
+                        <td><small>{{ fcard.created_at }}</small></td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+  </div>
+ 
+  {% endif %}
+{% endblock %}

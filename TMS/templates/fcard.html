@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <div class="card-header">
+        <strong>
+            {{ fcard_record.fcnr }}
+        </strong>
+    </div>
+    </br>
+
+    <div class="table-responsive">
+        <table class="table table-sm table-striped ">
+            <thead>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Fuel Card No.</th>
+                <td > {{ fcard_record.fcnr }}</td>
+                <th scope="row">Last digits</th>
+                <td>{{ fcard_record.lastdigits }}</td>
+                <th scope="row">Fuel Card Type</th>
+                <td>{{ fcard_record.fctype }}</td>
+                <th scope="row">Expiry Date</th>
+                <td>{{ fcard_record.exp_date }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Active </th>
+                <td>{{ fcard_record.is_active }}</td>    
+            </tr>
+            <tr>
+                </tbody>
+            </table>
+    <div>
+        
+        <a href="{% url 'fcards' %}" class="mb-1 btn btn-dark" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+        <a href="{% url 'delete_fcard' fcard_record.id %}" class="mb-1 btn btn-danger" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Slette</a>
+        <a href="{% url 'update_fcard' fcard_record.id %}" class="mb-1 btn btn-secondary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Redigere</a>
+            
+  {% endif %}
+{% endblock %}

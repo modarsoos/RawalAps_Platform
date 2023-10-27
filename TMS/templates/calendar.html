@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+    <div class="col-4">
+        <div class="row">
+            <div class="col m-1">
+                <button class="btn btn-outline-dark" style="width: 4rem;" type="button">
+                    <a class="nav-link" href="{% url 'cal' %}">Jan</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class="btn btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Feb</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class="btn btn-outline-dark " style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Mar</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class="btn btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Apr</a>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m-1">
+                <button class=" btn btn-outline-dark" style="width: 4rem;" type="button">
+                    <a class="nav-link" href="{% url 'cal' %}">May</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class=" btn btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Jun</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class=" btn btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Jul</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class=" btn  btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Aug</a>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m-1">
+                <button class=" btn  btn-outline-dark" style="width: 4rem;" type="button">
+                    <a class="nav-link" href="{% url 'cal' %}">Sep</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class=" btn  btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Oct</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class=" btn btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Nov</a>
+                </button>
+            </div>
+            <div class="col m-1">
+                <button class="btn  btn-outline-dark" style="width: 4rem;" type="button">
+                <a class="nav-link" href="{% url 'cal' %}">Dec</a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+{% endblock %}

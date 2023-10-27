@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <div class="col-3 text-center mb-1 p-1" style="background-color: #cbf2f5 ">
+            <strong>
+                {{ car_record.make }} {{ car_record.model }} {{ car_record.plate }}
+            </strong>
+    </div>
+    <div>
+        <a href="{% url 'cars' %}" class="mb-1 btn btn-dark" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+        <a href="{% url 'delete_car' car_record.id %}" class="mb-1 btn btn-danger" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Slette</a>
+        <a href="{% url 'update_car' car_record.id %}" class="mb-1 btn btn-secondary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Redigere</a>   
+    </div>
+    <div class="table-responsive">
+        <table class=" table-sm " style="background-color: #d9f7fa">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">Make</th>
+            <td > {{ car_record.make }}</td>
+            <th scope="row">Last Model</th>
+            <td>{{ car_record.model }}</td>
+            <th scope="row">Year</th>
+            <td>{{ car_record.year }}</td>
+            <th scope="row">Short</th>
+            <td>{{ car_record.short }}</td>
+            </tr>
+            <tr>
+            <th scope="row">Plate </th>
+            <td>{{ car_record.plate }}</td>
+            <th scope="row">Size </th>
+            <td>{{ car_record.size }}</td>
+            <th scope="row">Mobile </th>
+            <td>{{ car_record.mobile }}</td>
+            <th scope="row">Reg No.</th>
+            <td>{{ car_record.reg_nr }}</td>
+            </tr>
+            <tr>
+            <th scope="row">First Reg. </th>
+            <td>{{ car_record.reg_first }}</td>
+            <th scope="row">Reg. Due </th>
+            <td>{{ car_record.reg_due }}</td>
+            <th scope="row">Stairs Due </th>
+            <td>{{ car_record.stairs_due }}</td>
+            <th scope="row">Lift Due </th>
+            <td>{{ car_record.lift_due }}</td>
+            </tr>
+            <tr>
+            <th scope="row">Tires Due</th>
+            <td>{{ car_record.tires_due }}</td>
+            <th scope="row">Fuel Card </th>
+            <td>{{ car_record.fcard}}</td>
+            </tr>
+        </tbody>
+        </table>
+    <div>
+    
+    <a href="{% url 'ctrips_csv' car_record.id %}" class="mb-1 mt-1 btn btn-secondary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">CSV</a>
+
+
+    <div class="  table-responsive-sm ">
+        <table class="table table-responsive table-Secondary table-sm table-striped table-hover table-bordered">
+            <thead class="table-dark">
+                <tr class="flex-row responsive">
+                    <th ><small></small></th>
+                    <th ><small>ID</small></th>
+                    <th ><small>Driver</small></th>
+                    <th ><small>VL</small></th>
+                    <th ><small>Car</small></th>
+                    <th ><small>Income</small></th>
+                    <th ><small>Cash</small></th>
+                    <th ><small>Total</small></th>
+                    <th ><small>P. Type</small></th>
+                    <th ><small>Per%</small></th>
+                    <th ><small>%*Total</small></th>
+                    <th ><small>From</small></th>
+                    <th ><small>From</small></th>
+                    <th ><small>Till</small></th>
+                    <th ><small>Till</small></th>
+                    <th ><small>W. Time</small></th>
+                    <th ><small>Pause</small></th>
+                    <th ><small>P. Time</small></th>
+                    <th ><small>Expenses</small></th>
+                    <th ><small>Exp. Reason</small></th>
+                    <th ><small>Note</small></th>
+                </tr>
+            </thead>
+            <tbody>   
+                {% if trips %}
+                    {% for trip in trips %}
+                        <tr class="flex-row  responsive flex-grow-1">
+                            <th >
+                            <a href="{% url 'update_trip' trip.id %}"> ✎ </a>
+                            </th>
+                            <td><a href="{% url 'trip' trip.id %}">{{ trip.id }}</a></td>
+                            <td><small> {{ trip.driver }} </small></td> 
+                            <td><small> {{ trip.vl }} </small></td>
+                            <td><small> {{ trip.car }} </small></td>
+                            <td><small> {{ trip.income }} </small></td>
+                            <td><small> {{ trip.cash }} </small></td>
+                            <td><small> {{ trip.total }} </small></td>
+                            <td><small> {{ trip.p_type }} </small></td>
+                            <td><small> {{ trip.percent }} </small></td>
+                            <td><small> {{ trip.per_total }} </small></td>
+                            <td><small> {{ trip.fromd }} </small></td>
+                            <td><small> {{ trip.fromt }} </small></td>
+                            <td><small> {{ trip.tillt }} </small></td>
+                            <td><small> {{ trip.tilld }} </small></td>
+                            <td><small> {{ trip.work_time }} </small></td>
+                            <td><small> {{ trip.pause }} </small></td>
+                            <td><small> {{ trip.p_time }} </small></td>
+                            <td><small> {{ trip.expenses }} </small></td>
+                            <td><small> {{ trip.exp_reason }} </small></td>
+                            <td><small> {{ trip.note }} </small></td> 
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    {% endif %}
+{% endblock %}

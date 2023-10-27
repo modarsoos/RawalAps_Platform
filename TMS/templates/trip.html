@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="table-responsive ">
+    <table class="table table-sm  table-striped-columns">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Driver</th>
+          <td > {{ trip_record.driver }}</td>
+          <th scope="row">VL</th>
+          <td>{{ trip_record.vl }}</td>
+          <th scope="row">Car</th>
+          <td>{{ trip_record.car }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Income</th>
+          <td>{{ trip_record.income }}</td>
+          <th scope="row">Cash </th>
+          <td>{{ trip_record.cash }}</td>
+          <th scope="row">Total </th>
+          <td>{{ trip_record.total }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Payment Type</th>
+          <td>{{ trip_record.p_type }}</td>
+          <th scope="row">percent</th>
+          <td>{{ trip_record.percent }}</td>
+          <th scope="row">Percent of Total </th>
+          <td>{{ trip_record.per_total }}</td>
+        </tr>
+        <tr>
+          <th scope="row">From</th>
+          <td>{{ trip_record.fromd }} {{ trip_record.fromt }}</td>
+          <th scope="row">Till </th>
+          <td>{{ trip_record.tilld }} {{ trip_record.tillt }}</td>
+          <th scope="row">Work Time </th>
+          <td>{{ trip_record.work_time }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Pause</th>
+          <td>{{ trip_record.pause }}</td>
+          <th scope="row">Paid Time </th>
+          <td>{{ trip_record.p_time}}</td>
+          <th scope="row"></th>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">Expenses</th>
+          <td>{{ trip_record.expenses }}</td>
+          <th scope="row">Expenses Reason</th>
+          <td colspan="4" >{{ trip_record.exp_reason }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Note</th>
+          <td colspan="5" >{{ trip_record.note }}</td>
+        </tr>
+      </tbody>
+    </table>
+  <div>
+
+    <a href="{% url 'trips' %}" class="btn btn-dark" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+    <a href="{% url 'delete_trip' trip_record.id %}" class="btn btn-danger" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Slette</a>
+    <a href="{% url 'update_trip' trip_record.id %}" class="btn btn-secondary" style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Redigere</a>
+            
+
+{% endblock %}

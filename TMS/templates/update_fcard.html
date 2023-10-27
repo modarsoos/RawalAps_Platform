@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<div class="col">
+	<h3>Update Fuel Card</h3>
+	<br/>
+
+	<form method="POST">
+		{% csrf_token %}
+
+			<div class="table-responsive">
+				<table class="table table-sm table-striped ">
+					<thead>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope="row">Fuel Card No.</th>
+						<td > {{ form.fcnr }}</td>
+						<th scope="row">Last digits</th>
+						<td>{{ form.lastdigits }}</td>
+						<th scope="row">Fuel Card Type</th>
+						<td>{{ form.fctype }}</td>
+						<th scope="row">Expiry Date</th>
+						<td>{{ form.exp_date }}</td>
+					</tr>
+						<th scope="row">Active </th>
+						<td>{{ form.is_active }}</td> 
+					</tbody>
+				</table>
+				<div>
+
+		<br/>
+		<button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Update Fuel Card</button>
+
+	</form>
+
+
+</div>
+{% endif %}
+{% endblock %}

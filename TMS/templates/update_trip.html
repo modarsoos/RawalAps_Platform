@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<div class="col">
+<h3>Update Trip</h3>
+<br/>
+
+<form method="POST">
+	{% csrf_token %}
+
+	<div class="table-responsive ">
+		<table class="table table-sm  table-striped-columns">
+		  <thead>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <th scope="row">Driver</th>
+			  <td > {{ form.driver }}</td>
+			  <th scope="row">VL</th>
+			  <td>{{ form.vl }}</td>
+			  <th scope="row">Car</th>
+			  <td>{{ form.car }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">Income</th>
+			  <td>{{ form.income }}</td>
+			  <th scope="row">Cash </th>
+			  <td>{{ form.cash }}</td>
+			  <th scope="row">Total </th>
+			  <td>{{ form.total }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">Payment Type</th>
+			  <td>{{ form.p_type }}</td>
+			  <th scope="row">percent</th>
+			  <td>{{ form.percent }}</td>
+			  <th scope="row">Percent of Total </th>
+			  <td>{{ form.per_total }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">From</th>
+			  <td>{{ form.fromd }} {{ form.fromt }}</td>
+			  <th scope="row">Till </th>
+			  <td>{{ form.tilld }} {{ form.tillt }}</td>
+			  <th scope="row">Work Time </th>
+			  <td>{{ form.work_time }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">Pause</th>
+			  <td>{{ form.pause }}</td>
+			  <th scope="row">Paid Time </th>
+			  <td>{{ form.p_time}}</td>
+			  <th scope="row"></th>
+			  <td></td>
+			</tr>
+			<tr>
+			  <th scope="row">Expenses</th>
+			  <td>{{ form.expenses }}</td>
+			  <th scope="row">Expenses Reason</th>
+			  <td colspan="4" >{{ form.exp_reason }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">Note</th>
+			  <td colspan="5" >{{ form.note }}</td>
+			</tr>
+		  </tbody>
+		</table>
+	  <div>
+
+<br/>
+  <button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Update Trip</button>
+
+</form>
+
+
+</div>
+{% endif %}
+{% endblock %}

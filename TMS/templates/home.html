@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+
+<div class="row text-center">
+
+    <!-- Col 1 Drivers Table on Home Page-->
+          <div class="col ">
+            <h6>
+              Ansætter 
+              <small class="text-body-secondary">Liste</small>
+            </h6>
+            <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+                <thead class="table-info ">
+                    <tr class="">
+                    <th><small>ID</small></th>
+                    <th><small>Name</small></th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    {% if drivers %}
+                        {% for driver in drivers %}
+                            <tr>
+                                <td><small><a href="{% url 'driver' driver.id %}">{{ driver.id }}</a></small></td>
+                                <td><small><a href="{% url 'driver' driver.id %}">{{ driver.fname }} {{ driver.lname }}</a></small></td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+          </div>
+    <!-- Col 2 Cars Table on Home Page-->
+          <div class="col">
+            <h6>
+              Biler 
+              <small class="text-body-secondary">Liste</small>
+            </h6>
+            <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+                <thead class="table-info ">
+                    <tr>
+                    <th ><small>ID</small></th>
+                    <th ><small>Plate No.</small></th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    {% if cars %}
+                        {% for car in cars %}
+                            <tr>
+                                <td><small><a href="{% url 'car' car.id %}">{{ car.id }}</a></small></td>
+                                <td><small><a href="{% url 'car' car.id %}">{{ car.plate }}</a></small></td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+          </div>
+    <!-- Col 3 Benzin cards Table on Home Page-->
+          <div class="col">
+            <h6>
+              Benzin kort
+              <small class="text-body-secondary">Liste</small>
+            </h6>
+              <table class="table table-responsive table-sm table-striped table-hover table-bordered">
+                <thead class="table-info">
+                    <tr>
+                      <th ><small>ID</small></th>
+                      <th ><small>B.Kort</small></th>
+                      <th ><small>Expiry</small></th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    {% if fcards %}
+                      {% for fcard in fcards %}
+                        <tr>
+                            <td><small><a href="{% url 'fcard' fcard.id %}">{{ fcard.id }}</a></small></td>
+                            <td><small><a href="{% url 'fcard' fcard.id %}">{{ fcard.lastdigits }}</a></small></td>
+                            <td><small>{{ fcard.exp_date }}</small></td>
+                        </tr>
+                      {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+          </div>
+    <!--VLs Table on Home Page
+          <div class="col">
+            <h6>
+              Vognløbetter 
+              <small class="text-body-secondary">Liste</small>
+            </h6>
+              <table class="table table-responsive table-secondary table-sm table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                    <th ><small>ID</small></th>
+                    <th ><small>VL. No.</small></th>
+                    <th ><small>Active</small></th>
+                    </tr>
+                </thead>
+                <tbody>   
+                    {% if vls %}
+                        {% for vl in vls %}
+                            <tr>
+                                <td><small><a href="{% url 'vl' vl.id %}">{{ vl.id }}</a></small></td>
+                                <td><small><a href="{% url 'vl' vl.id %}">{{ vl.vlnr }}</a></small></td>
+                                <td><small>{{ vl.is_active }}</small></td>                                
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+          </div> -->
+
+    <!-- Col 4 Table on Home Page-->
+          <div class="col">
+              <h6 >
+                Kalendar 
+              </h6>
+              <center class="text-center">
+                
+                {{ cal|safe }}
+                
+              </center>
+          </div>
+    <!-- Col 5 Table on Home Page-->
+          <div class="col">
+            <h6>
+              Dues 
+              <small class="text-body-secondary">for {{ month }} {{ year }}</small>
+            </h6>
+              <table class=" m-1 table table-responsive table-sm table-striped table-hover table-bordered">
+                  <thead class="table-danger">
+                      <tr>
+                        <th>Due Cars</th>
+                      </tr>
+                  </thead>
+                  <tbody>  
+                      {% if due_car_list %}
+                        {% for car in  due_car_list %}
+                      <tr>
+                        <td><small><a href="{% url 'car' car.id %}">{{ car }}</a> - {{ car.reg_due }}</small></td>
+                      </tr>
+                        {% endfor %}
+                      {% else %}
+                      <tr>
+                        <td><small>None</small></td>
+                      </tr>
+                      {% endif %}
+                  </tbody>
+              </table>
+
+              <table class=" m-1 table table-responsive table-sm table-striped table-hover table-bordered">
+                    <thead class="table-danger">
+                      <tr>
+                        <th>Due Stairs</th>
+                      </tr>
+                    </thead>
+                  <tbody>             
+                      {% if due_stairs_list %}
+                        {% for car in  due_stairs_list %}
+                        <tr>
+                          <td><small><a href="{% url 'car' car.id %}">{{ car }}</a> - {{ car.stairs_due }}</small></td>
+                        </tr>
+                        {% endfor %}
+                      {% else %}
+                        <tr>
+                          <td><small>None</small></td>
+                        </tr>
+                      {% endif %}
+                  </tbody>
+              </table>
+
+              <table class="m-1 table table-responsive table-sm table-striped table-hover table-bordered">
+                  <thead class="table-danger">
+                    <tr>
+                      <th>Due Lifts</th>
+                    </tr>
+                  </thead>
+                  <tbody> 
+                      {% if due_lift_list %}
+                        {% for car in  due_lift_list %}
+                        <tr>
+                          <td><small><a href="{% url 'car' car.id %}">{{ car }}</a> - {{ car.lift_due }}</small></td>
+                        </tr>
+                        {% endfor %}
+                      {% else %}
+                      <tr>
+                        <td><small>None</small></td>
+                      </tr>
+                      {% endif %}
+                  </tbody>
+              </table>
+
+              <table class="m-1 table table-responsive table-sm table-striped table-hover table-bordered">
+                  <thead class="table-danger">
+                    <tr>
+                      <th>Due Tires</th>
+                    </tr>
+                  </thead>
+                <tbody> 
+                  {% if due_tires_list %}
+                    {% for car in  due_tires_list %}
+                    <tr>
+                      <td><small><a href="{% url 'car' car.id %}">{{ car }}</a> - {{ car.tires_due }}</small></td>
+                    </tr>
+                    {% endfor %}
+                  {% else %}
+                  <tr>
+                    <td><small>None</small></td>
+                  </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+
+              <table class="m-1 table  table-responsive  table-sm table-striped table-hover table-bordered">
+                  <thead class="table-danger">
+                    <tr>
+                      <th>Due Fuel Cards</th>
+                    </tr >
+                  </thead>
+                  <tbody> 
+                    {% if due_fcards_list %}
+                      {% for fcard in  due_fcards_list %}
+                      <tr>
+                       <td><small><a href="{% url 'fcard' fcard.id %}">{{ fcard }}</a>  - {{ fcard.exp_date }}</small></td>
+                      </tr>
+                      {% endfor %}
+                    {% else %}
+                    <tr>
+                      <td><small>None</small></td>
+                    </tr>
+                    {% endif %}
+                  </tbody>
+              </table>
+          </div>
+    <!-- Col 6 Table on Home Page-->
+          <div class="col">
+          </div>
+          
+</div>
+
+  {% else %}
+
+  <div class="col-md-3  offset-md-3">
+  <h3>Login</h3>
+  <form method="POST" action="{% url 'home' %}">
+      {% csrf_token %}
+      <div class="mb-3 ">
+        <input type="text" class="form-control" name="username", placeholder="Username" required>
+      </div>
+    <br/>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password", placeholder="Password" required>
+      </div>
+    <br/>
+      <button type="submit" class="btn btn-secondary">Login</button>
+  </form>
+  {% endif %}
+{% endblock %}
