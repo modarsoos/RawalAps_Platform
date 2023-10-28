@@ -7,7 +7,7 @@ Trips Management System TMS
 Here you will find a list of the latest changes made to the project.
 
 - Fixed the home page for improved login and registration clarity.
-- Created a new page titled "Driver":
+- Edited page titled "driver":
   - Centered the button and title.
   - Designed a responsive table and centered the items.
 
