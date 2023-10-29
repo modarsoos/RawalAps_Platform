@@ -13,6 +13,17 @@
     document.getElementById('total').value = x;
   }
 </script>
+<script>
+    // Function to calculate the Percent of Total
+    function calculatePercent() {
+      var total = parseFloat(document.getElementById('total').value);
+      var percent = parseFloat(document.getElementById('percent').value);
+      var perTotal = (total * percent) / 100;
+
+      // Display the result in the "Percent of Total" field
+      document.getElementById('per_total').value = perTotal;
+    }
+  </script>
 
 <form method="POST" action="{% url 'add_trip' %}">
 	{% csrf_token %}
@@ -35,16 +46,16 @@
 			  <td>{{ form.income }}</td>
 			  <th scope="row">Cash </th>
 			  <td>{{ form.cash }}</td>
-			  <th scope="row" id="total">Total </th>
-			  <td>{{ form.total }}</td>
+			  <th scope="row">Total</th>
+			  <td><input type="number" name="total" id="total" oninput="calculatePercent()"></td>
 			</tr>
 			<tr>
 			  <th scope="row">Payment Type</th>
 			  <td>{{ form.p_type }} </td>
 			  <th scope="row">Percent</th>
-			  <td>{{ form.percent }}</td>
-			  <th scope="row">Percent of Total </th>
-			  <td>{{ form.per_total }}</td>
+			  <td><input type="number" name="percent" id="percent" oninput="calculatePercent()"></td>
+			  <th scope="row">Percent of Total</th>
+			  <td><input type="text" name="per_total" id="per_total" readonly></td>
 			</tr>
 			<tr>
 			  <th scope="row">From</th>
