@@ -27,22 +27,22 @@
     </div>
 
   {% if user.is_authenticated %}
-  <nav class="row navbar navbar-expand-lg  responsive shadow " style="background-color: #a5b4c2 ">
+  <nav class="row navbar navbar-expand-lg  responsive  shadow " style="background-color: #f5f5f5">
 
       <div class=" container-fluid">
         <div class="container-fluid justify-content-start">
           
-            <button class="btn btn-sm btn-primary" type="button">
+            <button class="btn btn-sm btn-dark" type="button">
               <a class="nav-link " href="{% url 'home' %}">Home</a>
             </button>
             
             &nbsp;
             &nbsp;
 
-            <button class="btn btn-sm btn-secondary" type="button">
+            <button class="btn btn-sm btn-primary" type="button">
               <a class="nav-link" href="{% url 'trips' %}">Ture</a>
             </button>
-            <button class="btn btn-sm btn-success" type="button">
+            <button class="btn btn-sm btn-outline-primary "  type="button">
               <a class="nav-link" href="{% url 'add_trip' %}">føje Tur</a>
             </button>
 
@@ -51,19 +51,19 @@
             &nbsp;
             &nbsp;
 
-            <button class="btn btn-sm btn-outline-light" type="button">
+            <button class="btn btn-sm btn-outline-warning" type="button">
               <a class="nav-link" href="{% url 'drivers' %}">Chauffører</a>
             </button>
       
-            <button class="btn btn-sm btn-outline-light" type="button">
+            <button class="btn btn-sm btn-outline-info" type="button">
               <a class="nav-link" href="{% url 'cars' %}">Biler</a>
             </button>
       
-            <button class="btn btn-sm btn-outline-light " type="button">
+            <button class="btn btn-sm btn-outline-success " type="button">
               <a class="nav-link" href="{% url 'vls' %}">Vls</a>
             </button>
 
-            <button class="btn btn-sm btn btn-outline-light" type="button">
+            <button class="btn btn-sm btn btn-outline-secondary" type="button">
               <a class="nav-link" href="{% url 'fcards' %}">Benzinkort</a>
             </button>
 

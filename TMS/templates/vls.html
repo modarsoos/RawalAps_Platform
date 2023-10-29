@@ -2,18 +2,19 @@
 {% block content %}
 
   {% if user.is_authenticated %}
-  <h5>
-    Vognløbetter
+  <div class="">
+    <h5 class="col-2 ms-1 text-primary-emphasis bg-success-subtle border-primary-subtle rounded-bottom-3 text-center  shadow" style="background-color: #c2f79e">
+      Vognløbetter
     <small class="text-body-secondary">Side</small>
-  </h5>
-  <nav>
-    <button class="mb-1 btn btn-sm btn-success" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-        <a class="nav-link" href="{% url 'add_vl' %}">føje VL</a>
-    </button>
-  </nav>
-  <div class=" ">
+    </h5>
+    <div>
+      <button class="m-1 btn btn-sm btn-success rounded-pill" type="button">
+          <a class="nav-link" href="{% url 'add_vl' %}">føje VL</a>
+      </button>
+    </div>
+    <div class="table-responsive m-1 rounded shadow">
     <table class="table table-responsive table-sm table-striped table-hover table-bordered">
-        <thead class="table-dark">
+        <thead class="table-success">
             <tr>
             <th ><small>ID</small></th>
             <th ><small>Vongløbet No.</small></th>
