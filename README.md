@@ -8,8 +8,9 @@ Here you will find a list of the latest changes made to the project.
 
 - Fixed the home page for improved login and registration clarity.
 - Edited page titled "driver":
-  - Centered the button and title.
-  - Designed a responsive table and centered the items.
+  1- Centered the button and title.
+  2- Designed a responsive table and centered the items.
+  - 
 
 
 # Try this code in add_trip.html page
