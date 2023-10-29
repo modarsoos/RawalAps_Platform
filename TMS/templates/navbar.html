@@ -1,4 +1,4 @@
-    <div class="row navbar navbar-expand-lg navbar-dark bg-dark responsive">
+    <div class="row navbar navbar-expand-lg navbar-dark bg-dark bg-gradient responsive">
         <div class="col">
           <a class="navbar-brand  ms-2 me-1" href="{% url 'home' %}">Rawal Aps</a>
           <a class="btn btn-sm btn-outline-warning mb-1 "style="--bs-btn-padding-y: .10rem; --bs-btn-padding-x: .1rem; --bs-btn-font-size: .72rem;">Trips Management System</a>
@@ -27,7 +27,7 @@
     </div>
 
   {% if user.is_authenticated %}
-  <nav class="row navbar navbar-expand-lg  responsive  shadow " style="background-color: #f5f5f5">
+  <nav class="row navbar navbar-expand-lg bg-primary bg-opacity-10 responsive  shadow " >
 
       <div class=" container-fluid">
         <div class="container-fluid justify-content-start">
@@ -39,7 +39,7 @@
             &nbsp;
             &nbsp;
 
-            <button class="btn btn-sm btn-primary" type="button">
+            <button class="btn btn-sm btn-primary " type="button">
               <a class="nav-link" href="{% url 'trips' %}">Ture</a>
             </button>
             <button class="btn btn-sm btn-outline-primary "  type="button">
@@ -51,19 +51,19 @@
             &nbsp;
             &nbsp;
 
-            <button class="btn btn-sm btn-outline-warning" type="button">
+            <button class="btn btn-sm btn-warning" type="button">
               <a class="nav-link" href="{% url 'drivers' %}">Chauffører</a>
             </button>
       
-            <button class="btn btn-sm btn-outline-info" type="button">
+            <button class="btn btn-sm btn-info" type="button">
               <a class="nav-link" href="{% url 'cars' %}">Biler</a>
             </button>
       
-            <button class="btn btn-sm btn-outline-success " type="button">
+            <button class="btn btn-sm btn-success " type="button">
               <a class="nav-link" href="{% url 'vls' %}">Vls</a>
             </button>
 
-            <button class="btn btn-sm btn btn-outline-secondary" type="button">
+            <button class="btn btn-sm btn btn-secondary" type="button">
               <a class="nav-link" href="{% url 'fcards' %}">Benzinkort</a>
             </button>
 
