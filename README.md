@@ -10,7 +10,7 @@ Here you will find a list of the latest changes made to the project.
 - Edited page titled "driver":
   1- Centered the button and title.
   2- Designed a responsive table and centered the items.
-  - 
+  3-  test
 
 
 # Try this code in add_trip.html page
