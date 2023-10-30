@@ -7,22 +7,31 @@
 <br/>
 
 <script>
-  function mult(value) {
-    var x ;
-    x = 2 * value;
-    document.getElementById('total').value = x;
-  }
-</script>
-<script>
-    // Function to calculate the Percent of Total
-    function calculatePercent() {
-      var total = parseFloat(document.getElementById('total').value);
-      var percent = parseFloat(document.getElementById('percent').value);
-      var perTotal = (total * percent) / 100;
+	function add() {
+		var income = parseFloat(document.getElementById('income').value);
+		var cash = parseFloat(document.getElementById('cash').value);
+		var y = income + cash;
+		document.getElementById('total').value = y;
+	  }
 
-      // Display the result in the "Percent of Total" field
-      document.getElementById('per_total').value = perTotal;
-    }
+	  function calculatePercent() {
+	
+			var total = parseFloat(document.getElementById('total').value);
+			var percent = parseFloat(document.getElementById('percent').value);
+			var perTotal = (total * percent) / 100;
+	  
+			// Display the result in the "Percent of Total" field
+			document.getElementById('per_total').value = perTotal;
+		  }
+
+		 // if (document.getElementById('p_type') = "Pro%") {
+		 // else {
+		 //	document.getElementById('percent').disabled = true;
+		 // }
+		// }
+
+    // Function to calculate the Percent of Total
+
   </script>
 
 <form method="POST" action="{% url 'add_trip' %}">
@@ -43,19 +52,30 @@
 			</tr>
 			<tr>
 			  <th scope="row">Income</th>
-			  <td>{{ form.income }}</td>
+			  <td><input type="income" name="income" id="income" oninput="add()"></td>
 			  <th scope="row">Cash </th>
-			  <td>{{ form.cash }}</td>
+			  <td><input type="number" name="cash" id="cash" oninput="add()"></td>
 			  <th scope="row">Total</th>
-			  <td><input type="number" name="total" id="total" oninput="calculatePercent()"></td>
+			  <td><input type="number" name="total" id="total" oninput="add()"  readonly></td>
 			</tr>
 			<tr>
 			  <th scope="row">Payment Type</th>
-			  <td>{{ form.p_type }} </td>
+			  <td><select type="text" name="p_type" id="p_type" oninput="calculatePercent()">
+					<option value="Pro%"> Pro% </option>
+					<option value="Tid"> Tid </option>
+				   </select>
+			  </td>
 			  <th scope="row">Percent</th>
-			  <td><input type="number" name="percent" id="percent" oninput="calculatePercent()"></td>
+			  <td><select type="number" name="percent" id="percent" oninput="calculatePercent()" >
+					<option value="48"> 48% </option>
+					<option value="49"> 49% </option>
+					<option value="50"> 50% </option>
+					<option value="51"> 51% </option>
+					<option value="52"> 52% </option>
+				  </select>
+			  </td>
 			  <th scope="row">Percent of Total</th>
-			  <td><input type="text" name="per_total" id="per_total" readonly></td>
+			  <td><input type="text" name="per_total" id="per_total" oninput="calculatePercent()" readonly></td>
 			</tr>
 			<tr>
 			  <th scope="row">From</th>

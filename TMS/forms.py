@@ -110,7 +110,7 @@ class AddTripForm(forms.ModelForm):
 	fromt = forms.TimeField(required=False, widget=forms.TimeInput(attrs={'type': 'time'}),initial="00:00")
 	tilld = forms.DateField(required=False,initial=datetime.date.today, widget=forms.DateInput(attrs={'type': 'date'}))
 	tillt = forms.TimeField(required=False, widget=forms.TimeInput(attrs={'type': 'time'}),initial="00:00")
-	work_time = forms.DurationField(required=False,initial="00:00", widget=forms.TimeInput(attrs={"placeholder":"Work Time"}))
+	work_time = forms.DurationField(required=False,initial="00:00", widget=forms.TimeInput(attrs={'type': 'time'}))
 	pause = forms.DurationField(required=False,initial="00:00", widget=forms.TimeInput(attrs={'type': 'time'}))
 	p_time = forms.DurationField(required=False,initial="00:00", widget=forms.TimeInput(attrs={'type': 'time'}))
 	expenses = forms.DecimalField(max_digits=6, decimal_places=2,required=True,initial="00.00")
