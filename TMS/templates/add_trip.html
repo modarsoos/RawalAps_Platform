@@ -7,37 +7,53 @@
 <br/>
 
 <script>
-	function add() {
+	// Function to calculate the Total
+	function calTotal() {
 		var income = parseFloat(document.getElementById('income').value);
 		var cash = parseFloat(document.getElementById('cash').value);
-		var y = income + cash;
-		document.getElementById('total').value = y;
+		var total = income + cash;
+		document.getElementById('total').value = total;
 	  }
 
-	  function calculatePercent() {
+	// Function to calculate the Percent of Total
+	function calPercent() {
+		var total = parseFloat(document.getElementById('total').value);
+		var percent = parseFloat(document.getElementById('percent').value);
+		var perTotal = (total * percent) / 100;
 	
-			var total = parseFloat(document.getElementById('total').value);
-			var percent = parseFloat(document.getElementById('percent').value);
-			var perTotal = (total * percent) / 100;
-	  
-			// Display the result in the "Percent of Total" field
-			document.getElementById('per_total').value = perTotal;
-		  }
+		// Display the result in the "Percent of Total" field
+		document.getElementById('per_total').value = perTotal;
+	}
 
-		 // if (document.getElementById('p_type') = "Pro%") {
-		 // else {
-		 //	document.getElementById('percent').disabled = true;
-		 // }
-		// }
+	// Function to disable percent field if the Payment type is "Tid"
+	function perOrTime() {
+		if (document.getElementById('p_type') === "Pro%") {	
+			document.getElementById('percent').disabled = false;
+			
+		}
+		else {
+			document.getElementById('percent').disabled = true;
+		}
+	}
+	// Function to calculate the work time [the deffirence between "from" (date & time) and "till" (date & time)]
+	function calWorkT() {
 
-    // Function to calculate the Percent of Total
+	  }
 
-  </script>
+	// Function to calculate the paid time 
+	function calPaidT() {
+		var work_time = time(document.getElementById('work_time').value);
+		var pause = time(document.getElementById('pause').value);
+		var p_time = work_time - pause;
+		document.getElementById('p_time').value = p_time;
+	  }
+
+</script>
 
 <form method="POST" action="{% url 'add_trip' %}">
 	{% csrf_token %}
 
-  <div class="table-responsive ">
+	<div class="table-responsive ">
 		<table class="table table-sm  table-striped-columns">
 		  <thead>
 		  </thead>
@@ -52,21 +68,22 @@
 			</tr>
 			<tr>
 			  <th scope="row">Income</th>
-			  <td><input type="income" name="income" id="income" oninput="add()"></td>
+			  <td><input type="number" placeholder="0.00" name="income" id="income" oninput="calTotal()"></td>
 			  <th scope="row">Cash </th>
-			  <td><input type="number" name="cash" id="cash" oninput="add()"></td>
+			  <td><input type="number" placeholder="0.00" name="cash" id="cash" oninput="calTotal()" ></td>
 			  <th scope="row">Total</th>
-			  <td><input type="number" name="total" id="total" oninput="add()"  readonly></td>
+			  <td><input type="number" name="total" id="total" oninput="calTotal()"  readonly></td>
 			</tr>
 			<tr>
 			  <th scope="row">Payment Type</th>
-			  <td><select type="text" name="p_type" id="p_type" oninput="calculatePercent()">
+			  <td><select type="text" name="p_type" id="p_type" oninput="calPercent()" oninput="perOrTime(this.value)">
 					<option value="Pro%"> Pro% </option>
 					<option value="Tid"> Tid </option>
 				   </select>
 			  </td>
 			  <th scope="row">Percent</th>
-			  <td><select type="number" name="percent" id="percent" oninput="calculatePercent()" >
+			  <td><select type="number" name="percent" id="percent" oninput="calPercent()" onkeyup="perOrTime()">
+					<option value="--"> -- </option>	
 					<option value="48"> 48% </option>
 					<option value="49"> 49% </option>
 					<option value="50"> 50% </option>
@@ -75,7 +92,7 @@
 				  </select>
 			  </td>
 			  <th scope="row">Percent of Total</th>
-			  <td><input type="text" name="per_total" id="per_total" oninput="calculatePercent()" readonly></td>
+			  <td><input type="number" name="per_total" id="per_total" oninput="calPercent()" readonly></td>
 			</tr>
 			<tr>
 			  <th scope="row">From</th>
@@ -83,13 +100,13 @@
 			  <th scope="row">Till </th>
 			  <td>{{ form.tilld }} {{ form.tillt }}</td>
 			  <th scope="row">Work Time </th>
-			  <td>{{ form.work_time }}</td>
+			  <td><input type="time" name="work_time" id="work_time" oninput="calPaidT()"></td>
 			</tr>
 			<tr>
 			  <th scope="row">Pause</th>
-			  <td>{{ form.pause }}</td>
+			  <td><input type="time" name="pause" id="pause" oninput="calPaidT()"></td>
 			  <th scope="row">Paid Time </th>
-			  <td>{{ form.p_time}}</td>
+			  <td><input type="time" name="p_time" id="p_time" oninput="calPaidT()" readonly></td>
 			  <th scope="row"></th>
 			  <td></td>
 			</tr>
@@ -105,12 +122,11 @@
 			</tr>
 		  </tbody>
 		</table>
-	  <div>
+	<div>
   
-
-<br/>
-  <button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Add Trip</button>
-   <a href="{% url 'home' %}" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
+	<br/>
+	<button type="submit" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Add Trip</button>
+	<a href="{% url 'home' %}" class="btn btn-secondary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Back</a>
 
 </form>
 
